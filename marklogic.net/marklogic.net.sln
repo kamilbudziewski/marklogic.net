@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "marklogic.net", "marklogic.net\marklogic.net.csproj", "{02A4BC2B-99B1-4D93-B9EB-313C208B1386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{9B9A226A-EE71-4C89-81C9-C20BF640805F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{02A4BC2B-99B1-4D93-B9EB-313C208B1386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02A4BC2B-99B1-4D93-B9EB-313C208B1386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02A4BC2B-99B1-4D93-B9EB-313C208B1386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
