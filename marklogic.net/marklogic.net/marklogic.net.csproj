@@ -46,8 +46,11 @@
   <ItemGroup>
     <Compile Include="Capability.cs" />
     <Compile Include="DocumentProperties.cs" />
+    <Compile Include="JavascriptQueryCreator.cs" />
     <Compile Include="MarkLogicConnection.cs" />
     <Compile Include="MarkLogicSession.cs" />
+    <Compile Include="MlRestApi.cs" />
+    <Compile Include="MlResult.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

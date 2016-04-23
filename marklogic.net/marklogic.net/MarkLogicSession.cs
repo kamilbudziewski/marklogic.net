@@ -22,7 +22,7 @@ namespace marklogic.net
         {
             var documentJson = JsonConvert.SerializeObject(document);
 
-            
+            MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.IngestDocument(documentJson, properties));
         }
 
         public void Dispose()
