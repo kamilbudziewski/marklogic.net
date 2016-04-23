@@ -23,6 +23,10 @@ namespace marklogic.net
             request.ContentLength = byteArray.Length;
             request.Timeout = connection.Timeout;
 
+            var encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(connection.UserName + ":" + connection.Password));
+            request.Headers.Add("Authorization", "Basic " + encoded);
+
+
             var dataStream = request.GetRequestStream();
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
