@@ -10,16 +10,29 @@ namespace marklogic.net
     {
         public static MlResult QueryMarkLogic(MarkLogicConnection connection, string query)
         {
-            var result = DoQuery(connection, query);
-            return new MlResult()
+            try
             {
-                StringResult = result, Success = true
-            };
+                var result = DoQuery(connection, query);
+                return new MlResult()
+                {
+                    StringResult = result,
+                    Success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new MlResult()
+                {
+                    Exception = ex,
+                    Success = false
+                };
+            }
         }
 
         private static string DoQuery(MarkLogicConnection connection, string query)
         {
-            var uribuilder = new UriBuilder("http",connection.Host, connection.Port, "/LATEST/eval");
+
+            var uribuilder = new UriBuilder("http", connection.Host, connection.Port, "/LATEST/eval");
             var request = WebRequest.Create(uribuilder.Uri);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
@@ -36,14 +49,12 @@ namespace marklogic.net
             var response = request.GetResponse();
 
             var dataStream = response.GetResponseStream();
-            var reader = new StreamReader(dataStream);
-            var responseFromServer = reader.ReadToEnd();
-            
-            reader.Close();
+            var result = ResponseHandler.ClearRestResult(dataStream);
+
             dataStream.Close();
             response.Close();
 
-            return responseFromServer;
+            return result;
         }
     }
 }

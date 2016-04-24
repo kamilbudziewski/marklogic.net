@@ -54,6 +54,7 @@
     <Compile Include="MlResult.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

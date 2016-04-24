@@ -1,37 +1,36 @@
 ﻿using System;
-using System.IO;
 using Newtonsoft.Json;
 
 namespace marklogic.net
 {
     public class MarkLogicSession : IDisposable
     {
-        private MarkLogicConnection _connection;
+        private readonly MarkLogicConnection _connection;
 
         public MarkLogicSession(MarkLogicConnection connection)
         {
             _connection = connection;
         }
 
-        public T QueryString<T>(string query) where T : new()
+//        public T QueryString<T>(string query) where T : new()
+//        {
+//            return new T();
+//        }
+
+        public MlResult Query(string query)
         {
-            return new T();
+            var result = MlRestApi.QueryMarkLogic(_connection, query);
+
+            return result;
         }
 
-        public void IngestDocument<T>(T document, DocumentProperties properties)
+        public MlResult IngestDocument<T>(T document, DocumentProperties properties)
         {
             var documentJson = JsonConvert.SerializeObject(document);
 
             var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.IngestDocument(documentJson, properties));
 
-            if (result.Success)
-            {
-
-            }
-            else
-            {
-
-            }
+            return result;
         }
 
         public void Dispose()
