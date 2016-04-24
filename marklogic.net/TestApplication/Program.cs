@@ -11,7 +11,7 @@ namespace TestApplication
 
             using (var session = connection.OpenSession())
             {
-                session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
+                var result3 = session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
 
                 var result = session.Query<DummyDocument>("fn.doc('brrrr.json')");
 
@@ -26,4 +26,4 @@ namespace TestApplication
         public string Type { get; set; }
         public int Default { get; set; }
     }
-}
+}  
