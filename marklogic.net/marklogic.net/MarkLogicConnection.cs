@@ -1,6 +1,6 @@
 ﻿namespace marklogic.net
 {
-    public class MarkLogicConnection
+    public class MarkLogicConnection : IMarkLogicConnection
     {
         public string Host { get; private set; }
         public string UserName { get; private set; }
@@ -22,5 +22,15 @@
         {
             return new MarkLogicSession(this);
         }
+    }
+
+    public interface IMarkLogicConnection
+    {
+        MarkLogicSession OpenSession();
+        string Host { get; }
+        string UserName { get; }
+        string Password { get; }
+        int Port { get; }
+        int Timeout { get; set; }
     }
 }
