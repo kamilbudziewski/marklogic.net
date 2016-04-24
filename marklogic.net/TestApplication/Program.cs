@@ -9,11 +9,13 @@ namespace TestApplication
         {
             var connection = new MarkLogicConnection("localhost", "admin", "water1", 8091, 50000);
 
-            using (var sesion = connection.OpenSession())
+            using (var session = connection.OpenSession())
             {
-                sesion.IngestDocument(new DummyDocument() {Default = 5, Name = "test doc", Type = "test document"}, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
+                session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
 
-                var result = sesion.Query<DummyDocument>("fn.doc('brrrr.json')");
+                var result = session.Query<DummyDocument>("fn.doc('brrrr.json')");
+
+                var result2 = session.DeleteDocument("brrrr.json");
             }
         }
     }

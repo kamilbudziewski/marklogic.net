@@ -41,16 +41,16 @@ namespace marklogic.net
             return result;
         }
 
+        public MlResult DeleteDocument(string documentUri)
+        {
+            var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.DeleteDocument(documentUri));
+
+            return result;
+        }
+
         public void Dispose()
         {
 
-        }
-    }
-
-    public class MarkLogicException : Exception
-    {
-        public MarkLogicException(string message, Exception innerException) : base(message, innerException)
-        {
         }
     }
 }
