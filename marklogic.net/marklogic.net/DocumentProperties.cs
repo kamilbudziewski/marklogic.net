@@ -6,5 +6,6 @@ namespace marklogic.net
     {
         public string DocumentUri { get; set; }
         public List<Permission> Permissions{ get; set; }
+        public List<string> Collections { get; set; }
     }
 }

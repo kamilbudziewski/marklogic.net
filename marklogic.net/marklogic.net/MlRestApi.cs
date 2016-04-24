@@ -25,7 +25,7 @@ namespace marklogic.net
             request.ContentType = "application/x-www-form-urlencoded";
             request.Timeout = connection.Timeout;
 
-            var encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(connection.UserName + ":" + connection.Password));
+            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(connection.UserName + ":" + connection.Password));
             request.Headers.Add("Authorization", "Basic " + encoded);
 
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))

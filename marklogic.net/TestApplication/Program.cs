@@ -11,7 +11,7 @@ namespace TestApplication
 
             using (var sesion = connection.OpenSession())
             {
-                sesion.IngestDocument(new {name = "asd"}, new DocumentProperties() {DocumentUri = "test.json", Permissions = new List<Permission>()});
+                sesion.IngestDocument(new { name = "asd" }, new DocumentProperties() { DocumentUri = "test.json", Permissions = new List<Permission>() });
             }
         }
     }
