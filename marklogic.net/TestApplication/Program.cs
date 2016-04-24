@@ -11,10 +11,17 @@ namespace TestApplication
 
             using (var sesion = connection.OpenSession())
             {
-                sesion.IngestDocument(new { name = "asd" }, new DocumentProperties() { DocumentUri = "test.json", Permissions = new List<Permission>() });
+                sesion.IngestDocument(new DummyDocument() {Default = 5, Name = "test doc", Type = "test document"}, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
 
-                var result = sesion.Query("fn.doc('test.json')asdasd");
+                var result = sesion.Query<DummyDocument>("fn.doc('brrrr.json')");
             }
         }
+    }
+
+    public class DummyDocument
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int Default { get; set; }
     }
 }
