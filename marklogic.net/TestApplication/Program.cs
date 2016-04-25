@@ -17,10 +17,11 @@ namespace TestApplication
 
             using (var session = connection.OpenSession())
             {
-                var result3 = session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
+                var result3 = session.IngestDocument(new DummyDocument() { Default = 5, Name = "asd", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
+//                var result4 = session.IngestDocument(new DummyDocument() { Default = 6, Name = "asd", Type = "ssstest document" }, new DocumentProperties() { DocumentUri = "brrrr2.json", Permissions = new List<Permission>() });
 
                 var sssss = session.Linq<DummyDocument>();
-                var sss = session.Linq<DummyDocument>("asd").Where(x => x.Name == "asd" || x.Name == "bcd");
+                var sss = session.Linq<DummyDocument>("asd").Where(x => x.Name == "asd");
 
                 var rr = sss.ToList();
 
@@ -29,6 +30,7 @@ namespace TestApplication
                 var mmm = session.QueryString("fn.doc('brrrr.json')");
 
                 var result2 = session.DeleteDocument("brrrr.json");
+//                var result555 = session.DeleteDocument("brrrr2.json");
 
             }
         }

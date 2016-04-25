@@ -9,21 +9,16 @@ namespace marklogic.net.Linq
     internal class QueryTranslator : ExpressionVisitor
     {
         StringBuilder _sb;
-        private MarkLogicQuery query;
+        private MarkLogicQuery _query;
         private string _name;
         private string _value;
         private string _operand;
 
-        internal QueryTranslator()
-        {
-        }
-
         internal string Translate(Expression expression, string collection)
         {
-            query = new MarkLogicQuery() { Collection = collection, Filters = new List<Filter>() };
-            this._sb = new StringBuilder();
-            this.Visit(expression);
-            return this._sb.ToString();
+            _query = new MarkLogicQuery() { Collection = collection, Filters = new List<Filter>() };
+            Visit(expression);
+            return _query.ToString();
         }
 
         private static Expression StripQuotes(Expression e)
@@ -39,11 +34,9 @@ namespace marklogic.net.Linq
         {
             if (m.Method.DeclaringType == typeof(Queryable) && m.Method.Name == "Where")
             {
-//                _sb.Append("SELECT * FROM(");
-                this.Visit(m.Arguments[0]);
-//                _sb.Append(") AS T WHERE ");
+                Visit(m.Arguments[0]);
                 var lambda = (LambdaExpression)StripQuotes(m.Arguments[1]);
-                this.Visit(lambda.Body);
+                Visit(lambda.Body);
                 return m;
             }
             throw new NotSupportedException(string.Format("The method '{ 0 }’ is not supported", m.Method.Name));
@@ -98,7 +91,7 @@ namespace marklogic.net.Linq
 
             Visit(b.Right);
 
-            query.Filters.Add(new Filter()
+            _query.Filters.Add(new Filter
             {
                 Name = _name,
                 Value = _value
@@ -114,8 +107,8 @@ namespace marklogic.net.Linq
             if (q != null)
             {
                 // assume constant nodes w/ IQueryables are table references
-//                _sb.Append("SELECT * FROM ");
-//                _sb.Append(q.ElementType.Name);
+                //                _sb.Append("SELECT * FROM ");
+                //                _sb.Append(q.ElementType.Name);
             }
             else if (c.Value == null)
             {
@@ -158,6 +151,12 @@ namespace marklogic.net.Linq
     {
         public List<Filter> Filters { get; set; }
         public string Collection { get; set; }
+        public override string ToString()
+        {
+            var format = "var result = []; for(var i of cts.search(cts.andQuery([{0}]))) result.push(i); result";
+            return string.Format(format,
+                string.Join(",", Filters.Select(x => string.Format("cts.jsonPropertyValueQuery('{0}', '{1}')", x.Name, x.Value))));
+        }
     }
 
     internal class Filter
