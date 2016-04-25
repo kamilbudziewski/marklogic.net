@@ -50,7 +50,9 @@
     <Compile Include="CollectionBuilder.cs" />
     <Compile Include="DocumentProperties.cs" />
     <Compile Include="JavascriptQueryCreator.cs" />
-    <Compile Include="Linq\Class1.cs" />
+    <Compile Include="Linq\QueryTranslator.cs" />
+    <Compile Include="Linq\MlQueryProvider.cs" />
+    <Compile Include="Linq\ObjectReader.cs" />
     <Compile Include="Linq\Query.cs" />
     <Compile Include="Linq\QueryProvider.cs" />
     <Compile Include="Linq\TypeSystem.cs" />

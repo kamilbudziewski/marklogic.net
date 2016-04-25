@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace marklogic.net.Linq
 {
@@ -146,113 +140,6 @@ namespace marklogic.net.Linq
             }
 
             throw new NotSupportedException(string.Format("The member ‘{ 0 }’ is not supported", m.Member.Name));
-        }
-    }
-
-    internal class ObjectReader<T> : IEnumerable<T>, IEnumerable where T : class, new()
-    {
-        Enumerator _enumerator;
-
-        internal ObjectReader(List<T> elements)
-        {
-            _enumerator = new Enumerator(elements);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            var e = this._enumerator;
-            if (e == null)
-            {
-                throw new InvalidOperationException("Cannot enumerate more than once");
-            }
-
-            _enumerator = null;
-            return e;
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        class Enumerator : IEnumerator<T>, IEnumerator, IDisposable
-        {
-            private List<T>.Enumerator _enumerable;
-
-            internal Enumerator(List<T> elements)
-            {
-                _enumerable = elements.GetEnumerator();
-            }
-
-            public T Current
-            {
-                get { return _enumerable.Current; }
-
-            }
-
-            object IEnumerator.Current
-            {
-                get { return _enumerable.Current; }
-            }
-
-            public bool MoveNext()
-            {
-                return _enumerable.MoveNext();
-            }
-
-            public void Reset()
-            {
-            }
-
-            public void Dispose()
-            {
-                _enumerable.Dispose();
-            }
-        }
-    }
-
-    public class MlQueryProvider : QueryProvider
-    {
-        readonly MarkLogicConnection _connection;
-
-        public MlQueryProvider(MarkLogicConnection connection)
-        {
-            _connection = connection;
-        }
-
-        public override string GetQueryText(Expression expression)
-        {
-            return Translate(expression);
-        }
-
-        public override object Execute(Expression expression)
-        {
-            var cmd = this._connection.OpenSession();
-
-            var result = cmd.QueryString(Translate(expression));
-//            var result = cmd.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
-
-            var elementType = TypeSystem.GetElementType(expression.Type);
-
-            var listElementType = typeof (List<>).MakeGenericType(elementType);
-
-            return Activator.CreateInstance(
-
-                typeof(ObjectReader<>).MakeGenericType(elementType),
-
-                BindingFlags.Instance | BindingFlags.NonPublic, null,
-
-                new object[]
-                {
-                    JsonConvert.DeserializeObject(result.StringResult, listElementType)
-                },
-
-                null);
-        }
-
-        private string Translate(Expression expression)
-        {
-            return new QueryTranslator().Translate(expression);
         }
     }
 }
