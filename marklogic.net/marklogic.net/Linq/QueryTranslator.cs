@@ -10,6 +10,9 @@ namespace marklogic.net.Linq
     {
         StringBuilder _sb;
         private MarkLogicQuery query;
+        private string _name;
+        private string _value;
+        private string _operand;
 
         internal QueryTranslator()
         {
@@ -17,6 +20,7 @@ namespace marklogic.net.Linq
 
         internal string Translate(Expression expression, string collection)
         {
+            query = new MarkLogicQuery() { Collection = collection, Filters = new List<Filter>() };
             this._sb = new StringBuilder();
             this.Visit(expression);
             return this._sb.ToString();
@@ -35,9 +39,9 @@ namespace marklogic.net.Linq
         {
             if (m.Method.DeclaringType == typeof(Queryable) && m.Method.Name == "Where")
             {
-                _sb.Append("SELECT * FROM(");
+//                _sb.Append("SELECT * FROM(");
                 this.Visit(m.Arguments[0]);
-                _sb.Append(") AS T WHERE ");
+//                _sb.Append(") AS T WHERE ");
                 var lambda = (LambdaExpression)StripQuotes(m.Arguments[1]);
                 this.Visit(lambda.Body);
                 return m;
@@ -61,8 +65,7 @@ namespace marklogic.net.Linq
 
         protected override Expression VisitBinary(BinaryExpression b)
         {
-            _sb.Append("(");
-            this.Visit(b.Left);
+            Visit(b.Left);
 
             switch (b.NodeType)
             {
@@ -72,7 +75,7 @@ namespace marklogic.net.Linq
                     _sb.Append(" OR");
                     break;
                 case ExpressionType.Equal:
-                    _sb.Append(" = ");
+                    _operand = "=";
                     break;
                 case ExpressionType.NotEqual:
                     _sb.Append(" <> ");
@@ -92,8 +95,15 @@ namespace marklogic.net.Linq
                 default:
                     throw new NotSupportedException(string.Format("The binary operator '{ 0 }’ is not supported", b.NodeType));
             }
-            this.Visit(b.Right);
-            _sb.Append(")");
+
+            Visit(b.Right);
+
+            query.Filters.Add(new Filter()
+            {
+                Name = _name,
+                Value = _value
+            });
+
             return b;
 
         }
@@ -104,8 +114,8 @@ namespace marklogic.net.Linq
             if (q != null)
             {
                 // assume constant nodes w/ IQueryables are table references
-                _sb.Append("SELECT * FROM ");
-                _sb.Append(q.ElementType.Name);
+//                _sb.Append("SELECT * FROM ");
+//                _sb.Append(q.ElementType.Name);
             }
             else if (c.Value == null)
             {
@@ -116,17 +126,15 @@ namespace marklogic.net.Linq
                 switch (Type.GetTypeCode(c.Value.GetType()))
                 {
                     case TypeCode.Boolean:
-                        _sb.Append(((bool)c.Value) ? 1 : 0);
+                        _value = c.Value.ToString();
                         break;
                     case TypeCode.String:
-                        _sb.Append("'");
-                        _sb.Append(c.Value);
-                        _sb.Append("'");
+                        _value = c.Value.ToString();
                         break;
                     case TypeCode.Object:
                         throw new NotSupportedException(string.Format("The constant for '{ 0}’ is not supported", c.Value));
                     default:
-                        _sb.Append(c.Value);
+                        _value = c.Value.ToString();
                         break;
                 }
             }
@@ -137,7 +145,7 @@ namespace marklogic.net.Linq
         {
             if (m.Expression != null && m.Expression.NodeType == ExpressionType.Parameter)
             {
-                _sb.Append(m.Member.Name);
+                _name = m.Member.Name;
                 return m;
             }
 
@@ -149,10 +157,12 @@ namespace marklogic.net.Linq
     internal class MarkLogicQuery
     {
         public List<Filter> Filters { get; set; }
+        public string Collection { get; set; }
     }
 
     internal class Filter
     {
-        
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

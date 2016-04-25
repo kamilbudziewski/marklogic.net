@@ -20,7 +20,7 @@ namespace TestApplication
                 var result3 = session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
 
                 var sssss = session.Linq<DummyDocument>();
-                var sss = session.Linq<DummyDocument>("asd").Where(x => x.Name == "asd");
+                var sss = session.Linq<DummyDocument>("asd").Where(x => x.Name == "asd" || x.Name == "bcd");
 
                 var rr = sss.ToList();
 
