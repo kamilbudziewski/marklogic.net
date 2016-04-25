@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 
 namespace marklogic.net.Linq
 {
@@ -147,8 +148,29 @@ namespace marklogic.net.Linq
         public override string ToString()
         {
             var format = "var result = []; for(var i of cts.search(cts.andQuery([{0}]))) result.push(i); result";
+
+            var filters = new List<string>();
+            foreach (var filter in Filters)
+            {
+                var sb = new StringBuilder();
+                if (filter.Operator == Operator.And)
+                {
+                    sb.Append("cts.andQuery([");
+                }
+                if (filter.Operator == Operator.Or)
+                {
+                    sb.Append("cts.orQuery([");
+                }
+
+                foreach (var value in filter.Value)
+                {
+                    sb.AppendFormat("cts.jsonPropertyValueQuery('{0}', '{1}')", filter.Name, value);
+                }
+                sb.Append("])");
+                filters.Add(sb.ToString());
+            }
             return string.Format(format,
-                string.Join(",", Filters.Select(x => string.Format("cts.jsonPropertyValueQuery('{0}', '{1}')", x.Name, x.Value))));
+                string.Join(",", filters));
         }
     }
 
