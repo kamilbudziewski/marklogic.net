@@ -15,18 +15,13 @@ namespace TestApplication
             //            var connection = new MarkLogicConnection("localhost", "admin", "water1", 8091, 50000);
             var connection = new MarkLogicConnection("gda-marklogic-20", "test_user", "water1", 8091, 50000);
 
-
-            QueryProvider provider = new MlQueryProvider(connection);
-
-            var a = new Query<DummyDocument>(provider);
-            
-            var aresult = a.Where(x => x.Name == "asd");
-
-            var ennnn = aresult.ToList();
-
             using (var session = connection.OpenSession())
             {
                 var result3 = session.IngestDocument(new DummyDocument() { Default = 5, Name = "test doc", Type = "test document" }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
+
+                var sss = session.Linq<DummyDocument>().Where(x => x.Name == "asd");
+
+                var rr = sss.ToList();
 
                 var result = session.Query<DummyDocument>("fn.doc('brrrr.json')");
 

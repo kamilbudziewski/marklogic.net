@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using marklogic.net.Linq;
 using Newtonsoft.Json;
 
 namespace marklogic.net
@@ -29,6 +30,12 @@ namespace marklogic.net
             }
 
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);
+        }
+
+        public Query<T> Linq<T>()
+        {
+            QueryProvider provider = new MlQueryProvider(_connection);
+            return new Query<T>(provider);
         }
 
         public MlResult QueryString(string query)
