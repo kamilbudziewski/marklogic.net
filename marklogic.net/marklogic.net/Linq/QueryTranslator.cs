@@ -145,8 +145,7 @@ namespace marklogic.net.Linq
             throw new NotSupportedException(string.Format("The member ‘{ 0 }’ is not supported", m.Member.Name));
         }
     }
-    //TODO: marklogic query object should be built and then evaluated to string query
-    //TODO: find way to pass collectionQuery
+
     internal class MarkLogicQuery
     {
         public List<Filter> Filters { get; set; }
