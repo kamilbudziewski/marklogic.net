@@ -19,7 +19,7 @@ namespace TestApplication
             QueryProvider provider = new MlQueryProvider(connection);
 
             var a = new Query<DummyDocument>(provider);
-
+            
             var aresult = a.Where(x => x.Name == "asd");
 
             var ennnn = aresult.ToList();

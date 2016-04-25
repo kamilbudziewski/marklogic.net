@@ -137,22 +137,16 @@ namespace marklogic.net.Linq
             return c;
         }
 
-        /*protected override Expression VisitMemberAccess(MemberExpression m)
+        protected override Expression VisitMember(MemberExpression m)
         {
-
             if (m.Expression != null && m.Expression.NodeType == ExpressionType.Parameter)
             {
-
-                sb.Append(m.Member.Name);
-
+                _sb.Append(m.Member.Name);
                 return m;
-
             }
 
-            throw new NotSupportedException(string.Format("The member '{ 0 }’ is not supported", m.Member.Name));
-
-        }*/
-
+            throw new NotSupportedException(string.Format("The member ‘{ 0 }’ is not supported", m.Member.Name));
+        }
     }
 
     internal class ObjectReader<T> : IEnumerable<T>, IEnumerable where T : class, new()
@@ -235,8 +229,8 @@ namespace marklogic.net.Linq
         {
             var cmd = this._connection.OpenSession();
 
-//            var result = cmd.QueryString(Translate(expression));
-            var result = cmd.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
+            var result = cmd.QueryString(Translate(expression));
+//            var result = cmd.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
 
             var elementType = TypeSystem.GetElementType(expression.Type);
 
