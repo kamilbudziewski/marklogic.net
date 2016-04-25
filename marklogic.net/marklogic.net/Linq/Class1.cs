@@ -235,7 +235,8 @@ namespace marklogic.net.Linq
         {
             var cmd = this._connection.OpenSession();
 
-            var result = cmd.QueryString(Translate(expression));
+//            var result = cmd.QueryString(Translate(expression));
+            var result = cmd.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
 
             var elementType = TypeSystem.GetElementType(expression.Type);
 

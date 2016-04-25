@@ -22,6 +22,7 @@ namespace TestApplication
 
             var aresult = a.Where(x => x.Name == "asd");
 
+            var ennnn = aresult.ToList();
 
             using (var session = connection.OpenSession())
             {
