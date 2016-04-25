@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using marklogic.net;
+using marklogic.net.Linq;
 
 namespace TestApplication
 {
@@ -7,7 +10,13 @@ namespace TestApplication
     {
         static void Main(string[] args)
         {
-//            var connection = new MarkLogicConnection("localhost", "admin", "water1", 8091, 50000);
+            QueryProvider provider = new MlQueryProvider(new SqlConnection(""));
+
+            var a = new Query<DummyDocument>(provider);
+
+            var aresult = a.Where(x => x.Name == "asd");
+
+            //            var connection = new MarkLogicConnection("localhost", "admin", "water1", 8091, 50000);
             var connection = new MarkLogicConnection("gda-marklogic-20", "test_user", "water1", 8091, 50000);
 
             using (var session = connection.OpenSession())

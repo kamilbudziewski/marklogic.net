@@ -49,6 +49,10 @@
     <Compile Include="CollectionBuilder.cs" />
     <Compile Include="DocumentProperties.cs" />
     <Compile Include="JavascriptQueryCreator.cs" />
+    <Compile Include="Linq\Class1.cs" />
+    <Compile Include="Linq\Query.cs" />
+    <Compile Include="Linq\QueryProvider.cs" />
+    <Compile Include="Linq\TypeSystem.cs" />
     <Compile Include="MarkLogicConnection.cs" />
     <Compile Include="MarkLogicException.cs" />
     <Compile Include="MarkLogicSession.cs" />
