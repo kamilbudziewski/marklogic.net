@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -8,12 +9,13 @@ namespace marklogic.net.Linq
     internal class QueryTranslator : ExpressionVisitor
     {
         StringBuilder _sb;
+        private MarkLogicQuery query;
 
         internal QueryTranslator()
         {
         }
 
-        internal string Translate(Expression expression)
+        internal string Translate(Expression expression, string collection)
         {
             this._sb = new StringBuilder();
             this.Visit(expression);
@@ -141,5 +143,16 @@ namespace marklogic.net.Linq
 
             throw new NotSupportedException(string.Format("The member ‘{ 0 }’ is not supported", m.Member.Name));
         }
+    }
+    //TODO: marklogic query object should be built and then evaluated to string query
+    //TODO: find way to pass collectionQuery
+    internal class MarkLogicQuery
+    {
+        public List<Filter> Filters { get; set; }
+    }
+
+    internal class Filter
+    {
+        
     }
 }

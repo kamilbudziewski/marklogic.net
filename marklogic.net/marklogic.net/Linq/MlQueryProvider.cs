@@ -9,10 +9,12 @@ namespace marklogic.net.Linq
     public class MlQueryProvider : QueryProvider
     {
         readonly MarkLogicConnection _connection;
+        private readonly string _collection;
 
-        public MlQueryProvider(MarkLogicConnection connection)
+        public MlQueryProvider(MarkLogicConnection connection, string collection)
         {
             _connection = connection;
+            _collection = collection;
         }
 
         public override string GetQueryText(Expression expression)
@@ -22,14 +24,14 @@ namespace marklogic.net.Linq
 
         public override object Execute(Expression expression)
         {
-            var cmd = this._connection.OpenSession();
+            var session = _connection.OpenSession();
 
-            var result = cmd.QueryString(Translate(expression));
-//            var result = cmd.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
+            var result = session.QueryString(Translate(expression));
+            //            var result = session.QueryString("var result = [];result.push(fn.doc('brrrr.json'));result");
 
             var elementType = TypeSystem.GetElementType(expression.Type);
 
-            var listElementType = typeof (List<>).MakeGenericType(elementType);
+            var listElementType = typeof(List<>).MakeGenericType(elementType);
 
             return Activator.CreateInstance(
 
@@ -47,7 +49,7 @@ namespace marklogic.net.Linq
 
         private string Translate(Expression expression)
         {
-            return new QueryTranslator().Translate(expression);
+            return new QueryTranslator().Translate(expression, _collection);
         }
     }
 }

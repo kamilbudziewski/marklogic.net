@@ -32,9 +32,9 @@ namespace marklogic.net
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);
         }
 
-        public Query<T> Linq<T>()
+        public Query<T> Linq<T>(string collection = "")
         {
-            QueryProvider provider = new MlQueryProvider(_connection);
+            QueryProvider provider = new MlQueryProvider(_connection, collection);
             return new Query<T>(provider);
         }
 
@@ -73,7 +73,7 @@ namespace marklogic.net
         private void StopTimer()
         {
             _stopwatch.Stop();
-            LastExecutionTime = (int?) _stopwatch.ElapsedMilliseconds;
+            LastExecutionTime = (int?)_stopwatch.ElapsedMilliseconds;
         }
 
         public void Dispose()
