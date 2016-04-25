@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "marklogic.net", "marklogic.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{9B9A226A-EE71-4C89-81C9-C20BF640805F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "marklogic.net.tests", "marklogic.net.tests\marklogic.net.tests.csproj", "{56F743D5-D21B-4C58-B164-1644A3872EFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B9A226A-EE71-4C89-81C9-C20BF640805F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F743D5-D21B-4C58-B164-1644A3872EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F743D5-D21B-4C58-B164-1644A3872EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F743D5-D21B-4C58-B164-1644A3872EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F743D5-D21B-4C58-B164-1644A3872EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
