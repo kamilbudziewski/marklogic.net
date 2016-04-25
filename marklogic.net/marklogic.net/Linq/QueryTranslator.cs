@@ -67,23 +67,21 @@ namespace marklogic.net.Linq
                 case ExpressionType.Or:
                     _sb.Append(" OR");
                     break;
+                case ExpressionType.OrElse: // ||
+
+                    break;
                 case ExpressionType.Equal:
                     _operand = "=";
                     break;
                 case ExpressionType.NotEqual:
-                    _sb.Append(" <> ");
                     break;
                 case ExpressionType.LessThan:
-                    _sb.Append(" < ");
                     break;
                 case ExpressionType.LessThanOrEqual:
-                    _sb.Append(" <= ");
                     break;
                 case ExpressionType.GreaterThan:
-                    _sb.Append(" > ");
                     break;
                 case ExpressionType.GreaterThanOrEqual:
-                    _sb.Append(" >= ");
                     break;
                 default:
                     throw new NotSupportedException(string.Format("The binary operator '{ 0 }’ is not supported", b.NodeType));
@@ -91,11 +89,7 @@ namespace marklogic.net.Linq
 
             Visit(b.Right);
 
-            _query.Filters.Add(new Filter
-            {
-                Name = _name,
-                Value = _value
-            });
+            _query.Filters.Add(new Filter(_name, new[] { _value }));
 
             return b;
 
@@ -160,7 +154,27 @@ namespace marklogic.net.Linq
 
     internal class Filter
     {
+        public Filter(string name, string[] value)
+        {
+            Name = name;
+            Value = value;
+            Operator = Operator.Or;
+        }
+
+        public Filter(string name, string[] value, Operator @operator)
+        {
+            Name = name;
+            Value = value;
+            Operator = @operator;
+        }
+
         public string Name { get; set; }
-        public string Value { get; set; }
+        public string[] Value { get; set; }
+        public Operator Operator { get; set; }
+    }
+
+    internal enum Operator
+    {
+        Or, And
     }
 }
