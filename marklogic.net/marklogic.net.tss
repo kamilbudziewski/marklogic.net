@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\collectionbuilder.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\documentproperties.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\marklogicconnection.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MarkLogicSession.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\MlQueryProvider.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\mlrestapi.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\testapplication\program.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\Query.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\querytranslator.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\ObjectReader.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

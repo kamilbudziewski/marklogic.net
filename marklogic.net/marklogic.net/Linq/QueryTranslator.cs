@@ -9,7 +9,6 @@ namespace marklogic.net.Linq
 {
     internal class QueryTranslator : ExpressionVisitor
     {
-        StringBuilder _sb;
         private MarkLogicQuery _query;
         private string _name;
         private string _value;
@@ -48,7 +47,7 @@ namespace marklogic.net.Linq
             switch (u.NodeType)
             {
                 case ExpressionType.Not:
-                    _sb.Append(" NOT ");
+//                    _sb.Append(" NOT ");
                     Visit(u.Operand);
                     break;
                 default:
@@ -59,6 +58,7 @@ namespace marklogic.net.Linq
 
         protected override Expression VisitBinary(BinaryExpression b)
         {
+            //TODO: parsowac do struktury gdzie bedzie drzewko wyrazen i potem do stringa
             Visit(b.Left);
 
             switch (b.NodeType)
@@ -66,7 +66,7 @@ namespace marklogic.net.Linq
                 case ExpressionType.And:
                     break;
                 case ExpressionType.Or:
-                    _sb.Append(" OR");
+//                    _sb.Append(" OR");
                     break;
                 case ExpressionType.OrElse: // ||
 
@@ -107,7 +107,7 @@ namespace marklogic.net.Linq
             }
             else if (c.Value == null)
             {
-                _sb.Append("NULL");
+//                _sb.Append("NULL");
             }
             else
             {
