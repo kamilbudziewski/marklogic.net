@@ -19,10 +19,6 @@ namespace TestApplication
                 var result = session.IngestDocument(new DummyDocument() { Default = 5, Name = "asd2", Type = "test document", Inner = new Inner() { InnerName = "cdd" } }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
                 //                var result4 = session.IngestDocument(new DummyDocument() { Default = 6, Name = "asd", Type = "ssstest document" }, new DocumentProperties() { DocumentUri = "brrrr2.json", Permissions = new List<Permission>() });
 
-                var sss = session.Linq<DummyDocument>("asd").Where(x => x.Name == "asd" || x.Name=="asd2" || x.Name=="bcd");
-
-                var rr = sss.ToList();
-
                 //                var result = session.Query<DummyDocument>("fn.doc('brrrr.json')");
 
                 //                var mmm = session.QueryString("fn.doc('brrrr.json')");

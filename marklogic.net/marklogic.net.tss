@@ -11,25 +11,22 @@
       <string>c:\git\marklogic.net\marklogic.net\marklogic.net\marklogicconnection.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MarkLogicSession.cs</string>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\marklogicsession.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\MlQueryProvider.cs</string>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\mlqueryprovider.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\git\marklogic.net\marklogic.net\marklogic.net\mlrestapi.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\testapplication\program.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\TestApplication\Program.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\Query.cs</string>
+      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\query.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\querytranslator.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\ObjectReader.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

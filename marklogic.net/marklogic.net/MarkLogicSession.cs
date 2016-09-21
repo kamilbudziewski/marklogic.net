@@ -32,7 +32,7 @@ namespace marklogic.net
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);
         }
 
-        public Query<T> Linq<T>(string collection = "")
+        internal Query<T> Linq<T>(string collection = "")
         {
             QueryProvider provider = new MlQueryProvider(_connection, collection);
             return new Query<T>(provider);
