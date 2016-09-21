@@ -8,11 +8,11 @@ namespace marklogic.net
 {
     internal static class MlRestApi
     {
-        public static MlResult QueryMarkLogic(MarkLogicConnection connection, string query)
+        public static MlResult QueryMarkLogic(MarkLogicConnection connection, string query, string database = null)
         {
             try
             {
-                var result = DoQuery(connection, query);
+                var result = DoQuery(connection, query, database);
                 return new MlResult()
                 {
                     StringResult = result,
@@ -29,8 +29,12 @@ namespace marklogic.net
             }
         }
 
-        private static string DoQuery(MarkLogicConnection connection, string query)
+        private static string DoQuery(MarkLogicConnection connection, string query, string database)
         {
+            if (database != null)
+            {
+                query = string.Format(@"xdmp.eval('{0}', [], {{""database"":xdmp.database(""{1}"")}})", query, database);
+            }
 
             var uribuilder = new UriBuilder("http", connection.Host, connection.Port, "/LATEST/eval");
             var request = WebRequest.Create(uribuilder.Uri);

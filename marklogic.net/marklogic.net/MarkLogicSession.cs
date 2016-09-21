@@ -18,10 +18,10 @@ namespace marklogic.net
             _stopwatch = new Stopwatch();
         }
 
-        public T Query<T>(string query) where T : new()
+        public T Query<T>(string query, string database = null) where T : new()
         {
             StartTimer();
-            var result = MlRestApi.QueryMarkLogic(_connection, query);
+            var result = MlRestApi.QueryMarkLogic(_connection, query, database);
             StopTimer();
             if (result.Success)
             {
@@ -32,10 +32,10 @@ namespace marklogic.net
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);
         }
 
-        public T GetDocument<T>(string docId) where T : new()
+        public T GetDocument<T>(string docId, string database = null) where T : new()
         {
             StartTimer();
-            var result = MlRestApi.QueryMarkLogic(_connection, string.Format("fn.doc('{0}')", docId));
+            var result = MlRestApi.QueryMarkLogic(_connection, string.Format("fn.doc('{0}')", docId), database);
             StopTimer();
             if (result.Success)
             {
@@ -52,28 +52,28 @@ namespace marklogic.net
             return new Query<T>(provider);
         }
 
-        public MlResult QueryString(string query)
+        public MlResult QueryString(string query, string database = null)
         {
             StartTimer();
-            var result = MlRestApi.QueryMarkLogic(_connection, query);
+            var result = MlRestApi.QueryMarkLogic(_connection, query, database);
             StopTimer();
             return result;
         }
 
-        public MlResult IngestDocument<T>(T document, DocumentProperties properties)
+        public MlResult IngestDocument<T>(T document, DocumentProperties properties, string database = null)
         {
             StartTimer();
             var documentJson = JsonConvert.SerializeObject(document);
 
-            var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.IngestDocument(documentJson, properties));
+            var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.IngestDocument(documentJson, properties), database);
             StopTimer();
             return result;
         }
 
-        public MlResult DeleteDocument(string documentUri)
+        public MlResult DeleteDocument(string documentUri, string database = null)
         {
             StartTimer();
-            var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.DeleteDocument(documentUri));
+            var result = MlRestApi.QueryMarkLogic(_connection, JavascriptQueryCreator.DeleteDocument(documentUri), database);
             StopTimer();
             return result;
         }
