@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>marklogic.net</id>
+    <version>1.0</version>
+    <authors>Kamil Budziewski</authors>
+    <description>Library for document manipulation in MarkLogic</description>
+    <tags>MarkLogic .net</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="8.0.1" />
+    </dependencies>
+  </metadata>
+</package>
