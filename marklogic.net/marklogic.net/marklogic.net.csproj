@@ -67,6 +67,7 @@
     <Compile Include="ResponseHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="marklogic.net.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
