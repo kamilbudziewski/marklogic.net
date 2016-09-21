@@ -19,7 +19,7 @@ namespace TestApplication
                 var result = session.IngestDocument(new DummyDocument() { Default = 5, Name = "asd2", Type = "test document", Inner = new Inner() { InnerName = "cdd" } }, new DocumentProperties() { DocumentUri = "brrrr.json", Permissions = new List<Permission>() });
                 //                var result4 = session.IngestDocument(new DummyDocument() { Default = 6, Name = "asd", Type = "ssstest document" }, new DocumentProperties() { DocumentUri = "brrrr2.json", Permissions = new List<Permission>() });
 
-                //                var result = session.Query<DummyDocument>("fn.doc('brrrr.json')");
+                                var resultasda = session.GetDocument<DummyDocument>("brrrr.json");
 
                 //                var mmm = session.QueryString("fn.doc('brrrr.json')");
 

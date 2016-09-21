@@ -32,6 +32,20 @@ namespace marklogic.net
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);
         }
 
+        public T GetDocument<T>(string docId) where T : new()
+        {
+            StartTimer();
+            var result = MlRestApi.QueryMarkLogic(_connection, string.Format("fn.doc('{0}')", docId));
+            StopTimer();
+            if (result.Success)
+            {
+                var deserialzedObject = JsonConvert.DeserializeObject<T>(result.StringResult);
+                return deserialzedObject;
+            }
+
+            throw new MarkLogicException("Exception while querying marklogic", result.Exception);
+        }
+
         internal Query<T> Linq<T>(string collection = "")
         {
             QueryProvider provider = new MlQueryProvider(_connection, collection);
