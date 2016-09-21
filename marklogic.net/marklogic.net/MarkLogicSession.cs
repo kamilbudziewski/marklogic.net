@@ -62,6 +62,10 @@ namespace marklogic.net
 
         public MlResult IngestDocument<T>(T document, DocumentProperties properties, string database = null)
         {
+            if (string.IsNullOrEmpty(properties.DocumentUri))
+            {
+                throw new ArgumentException("Properties.DocumentUri can not be empty");
+            }
             StartTimer();
             var documentJson = JsonConvert.SerializeObject(document);
 
