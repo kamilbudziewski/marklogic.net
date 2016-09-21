@@ -33,7 +33,7 @@ namespace marklogic.net
         {
             if (database != null)
             {
-                query = string.Format(@"xdmp.eval('{0}', [], {{""database"":xdmp.database(""{1}"")}})", query, database);
+                query = string.Format(@"xdmp.eval(""{0}"", [], {{""database"":xdmp.database(""{1}"")}})", query.Replace("\"", "\\\""), database);
             }
 
             var uribuilder = new UriBuilder("http", connection.Host, connection.Port, "/LATEST/eval");
