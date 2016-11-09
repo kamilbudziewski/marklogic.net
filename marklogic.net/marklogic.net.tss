@@ -2,31 +2,46 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\collectionbuilder.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\CollectionBuilder.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\documentproperties.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\DocumentProperties.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\marklogicconnection.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\JavascriptQueryCreator.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\marklogicsession.cs</string>
+      <string>marklogic.net</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\mlqueryprovider.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\marklogic.net.nuspec</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\mlrestapi.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MarkLogicConnection.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MarkLogicException.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MarkLogicSession.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\MlQueryProvider.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\MlRestApi.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\packages.config</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>C:\GIT\marklogic.net\marklogic.net\TestApplication\Program.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\query.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\Query.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\git\marklogic.net\marklogic.net\marklogic.net\linq\querytranslator.cs</string>
+      <string>C:\GIT\marklogic.net\marklogic.net\marklogic.net\Linq\QueryTranslator.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
