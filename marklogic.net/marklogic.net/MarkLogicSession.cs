@@ -98,5 +98,20 @@ namespace marklogic.net
         {
 
         }
+
+        public DateTime? GetDocumentTimestamp(string docId, string database = null)
+        {
+            var query = $"var a = xdmp.documentTimestamp('{docId}');if(a!=null) fn.adjustDateTimeToTimezone(xdmp.timestampToWallclock(a));else null;";
+            StartTimer();
+            var result = MlRestApi.QueryMarkLogic(_connection, query, database);
+            StopTimer();
+            if (result.Success)
+            {
+                if (string.IsNullOrWhiteSpace(result.StringResult)) return null;
+                return DateTime.ParseExact(result.StringResult.Trim(), "yyyy-MM-ddTHH:mm:ss.ffffffK", null);
+            }
+
+            throw new MarkLogicException("Exception while querying marklogic", result.Exception);
+        }
     }
 }
