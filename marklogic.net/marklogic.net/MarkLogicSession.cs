@@ -108,7 +108,7 @@ namespace marklogic.net
             if (result.Success)
             {
                 if (string.IsNullOrWhiteSpace(result.StringResult)) return null;
-                return DateTime.ParseExact(result.StringResult.Trim(), "yyyy-MM-ddTHH:mm:ss.FFFFFFK", null);
+                return DateTime.ParseExact(result.StringResult.Trim(), "yyyy-MM-ddTHH:mm:ss.FFFFFFFK", null);
             }
 
             throw new MarkLogicException("Exception while querying marklogic", result.Exception);

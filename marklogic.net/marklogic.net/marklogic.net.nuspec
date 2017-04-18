@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>marklogic.net</id>
-    <version>1.0.3</version>
+    <version>1.0.7</version>
     <authors>Kamil Budziewski</authors>
     <description>Library for document manipulation in MarkLogic</description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
