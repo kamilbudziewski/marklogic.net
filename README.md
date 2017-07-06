@@ -80,4 +80,23 @@ var document = session.Query<MyDocumentType>("fn.doc('/testdocument.json')");
 ```
 
 
+# Query for any result 
+
+You can query marklogic for any result, it will be returned as string
+
+```cs
+MlResult QueryString(string query, string database = null)
+...
+var result = session.QueryString("cts.search(cts.jsonPropertyValueQuery('source', 'news'))")
+```
+
+# Deleting document
+
+You can delete document by URI
+
+```cs
+MlResult DeleteDocument(string documentUri, string database = null)
+...
+var result = session.DeleteDocument("/testdocument.json");
+```
 
