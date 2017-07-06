@@ -29,7 +29,7 @@ Ingest document accepts any type of document which will be serialized by JSON.ne
 MlResult IngestDocument<T>(T document, DocumentProperties properties, string database = null)
 ```
 Document properties define 
-- DocumentUri - identifier of document laoded to Marklogic
+- DocumentUri - identifier of document laoded to Marklogic (obligatory parameter)
 - Permissions - custom permissioning for document
 - Collections - set of collections assigned to document
 ```cs
@@ -42,5 +42,10 @@ Document properties define
 ```
 
 database parameter allows you to load document to database which is not connected to REST API provided in connection. It is possible by using ```xdmp.eval()```
+
+Sample call
+```cs 
+var result = session.IngestDocument(new {id = 5, text = "ddasdad"}, new DocumentProperties() {DocumentUri = "/testdocument.json"});
+```
 
 
