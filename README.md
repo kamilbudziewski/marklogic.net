@@ -43,9 +43,41 @@ Document properties define
 
 database parameter allows you to load document to database which is not connected to REST API provided in connection. It is possible by using ```xdmp.eval()```
 
-Sample call
+# Sample call
+
 ```cs 
 var result = session.IngestDocument(new {id = 5, text = "ddasdad"}, new DocumentProperties() {DocumentUri = "/testdocument.json"});
 ```
+
+# Return
+  ```cs
+  public class MlResult
+  {
+    public bool Success { get; set; }
+
+    public Exception Exception { get; set; }
+
+    public string StringResult { get; set; }
+  }
+```
+
+# Getting documents from Marklogic
+You can use strongly typed method `GetDocument` which returns document with given URI
+```cs
+T GetDocument<T>(string docId, string database = null) where T : new()
+...
+var document = session.GetDocument<MyDocumentType>("/testdocument.json");
+```
+
+OR
+
+strongly typed `Query` method, which will return document(s) for any javascript query
+
+```cs
+T Query<T>(string query, string database = null) where T : new()
+...
+var document = session.Query<MyDocumentType>("fn.doc('/testdocument.json')");
+```
+
 
 
