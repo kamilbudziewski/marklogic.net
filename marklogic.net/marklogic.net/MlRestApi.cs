@@ -47,18 +47,21 @@ namespace marklogic.net
 
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
-                string data = string.Format("{0}={1}%0A", "javascript", HttpUtility.UrlEncode(query));
+                string data = $"javascript={HttpUtility.UrlEncode(query)}%0A";
                 streamWriter.Write(data);
             }
-            var response = request.GetResponse();
 
-            var dataStream = response.GetResponseStream();
-            var result = ResponseHandler.ClearRestResult(dataStream);
+            using (var response = request.GetResponse())
+            {
+                using (var dataStream = response.GetResponseStream())
+                {
+                    var result = ResponseHandler.ClearRestResult(dataStream);
 
-            dataStream.Close();
-            response.Close();
-
-            return result;
+                    dataStream?.Close();
+                    response.Close();
+                    return result;  
+                }
+            }
         }
     }
 }
